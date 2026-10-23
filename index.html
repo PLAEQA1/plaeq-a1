@@ -1,1 +1,320 @@
-https://plaeqa1.github.io/plaeq-a1/
+<!DOCTYPE html>
+
+<html lang="de">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>PLÄQ-A1: Drop-In Polyester | Re-engineering Germany</title>  
+    <style>  
+        :root {  
+            --bg-color: #050b14;  
+            --card-bg: #0a192f;  
+            --accent-blue: #00d2ff;  
+            --accent-red: #ff3333;  
+            --text-main: #ffffff;  
+            --text-muted: #8892b0;  
+            --border-color: #1e3a60;  
+        }  * {  
+        box-sizing: border-box;  
+        margin: 0;  
+        padding: 0;  
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;  
+    }  
+
+    body {  
+        background-color: var(--bg-color);  
+        color: var(--text-main);  
+        line-height: 1.6;  
+        overflow-x: hidden;  
+    }  
+
+    /* Sprachwahl-Overlay */  
+    #lang-modal {  
+        position: fixed;  
+        top: 0;  
+        left: 0;  
+        width: 100%;  
+        height: 100%;  
+        background: rgba(5, 11, 20, 0.95);  
+        display: flex;  
+        justify-content: center;  
+        align-items: center;  
+        z-index: 1000;  
+    }  
+
+    .lang-card {  
+        background: var(--card-bg);  
+        border: 2px solid var(--accent-blue);  
+        padding: 40px;  
+        border-radius: 12px;  
+        text-align: center;  
+        box-shadow: 0 0 30px rgba(0, 210, 255, 0.3);  
+        max-width: 450px;  
+        width: 90%;  
+    }  
+
+    .lang-card h2 {  
+        margin-bottom: 20px;  
+        color: var(--accent-blue);  
+        letter-spacing: 1px;  
+    }  
+
+    .lang-btns {  
+        display: flex;  
+        gap: 20px;  
+        justify-content: center;  
+        margin-top: 25px;  
+    }  
+
+    .btn {  
+        background: transparent;  
+        border: 2px solid var(--accent-blue);  
+        color: var(--text-main);  
+        padding: 12px 25px;  
+        font-size: 16px;  
+        font-weight: bold;  
+        border-radius: 6px;  
+        cursor: pointer;  
+        transition: all 0.3s ease;  
+    }  
+
+    .btn:hover {  
+        background: var(--accent-blue);  
+        color: var(--bg-color);  
+        box-shadow: 0 0 15px var(--accent-blue);  
+    }  
+
+    /* Hauptinhalt (erst nach Sprachwahl sichtbar) */  
+    #main-content {  
+        display: none;  
+    }  
+
+    /* Navigation */  
+    header {  
+        background: rgba(10, 25, 47, 0.9);  
+        border-bottom: 1px solid var(--border-color);  
+        position: sticky;  
+        top: 0;  
+        z-index: 100;  
+        display: flex;  
+        justify-content: space-between;  
+        align-items: center;  
+        padding: 15px 30px;  
+    }  
+
+    .logo {  
+        font-weight: bold;  
+        font-size: 20px;  
+        color: var(--accent-blue);  
+        letter-spacing: 1.5px;  
+    }  
+
+    nav ul {  
+        list-style: none;  
+        display: flex;  
+        gap: 25px;  
+    }  
+
+    nav a {  
+        color: var(--text-muted);  
+        text-decoration: none;  
+        font-size: 14px;  
+        font-weight: 600;  
+        transition: color 0.2s;  
+    }  
+
+    nav a:hover {  
+        color: var(--accent-blue);  
+    }  
+
+    /* Hero / Banner Bereich */  
+    .hero {  
+        position: relative;  
+        width: 100%;  
+        max-height: 500px;  
+        overflow: hidden;  
+        border-bottom: 2px solid var(--border-color);  
+    }  
+
+    .hero img {  
+        width: 100%;  
+        height: auto;  
+        display: block;  
+        object-fit: cover;  
+    }  
+
+    /* Container */  
+    .container {  
+        max-width: 1100px;  
+        margin: 40px auto;  
+        padding: 0 20px;  
+    }  
+
+    .grid-2 {  
+        display: grid;  
+        grid-template-columns: 1fr 1fr;  
+        gap: 40px;  
+        align-items: center;  
+        margin-bottom: 50px;  
+    }  
+
+    @media (max-width: 768px) {  
+        .grid-2 {  
+            grid-template-columns: 1fr;  
+        }  
+        nav ul {  
+            display: none; /* Vereinfacht für mobile Ansicht */  
+        }  
+    }  
+
+    .card {  
+        background: var(--card-bg);  
+        border: 1px solid var(--border-color);  
+        border-radius: 8px;  
+        padding: 30px;  
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4);  
+    }  
+
+    .card img {  
+        width: 100%;  
+        border-radius: 6px;  
+        border: 1px solid var(--border-color);  
+        margin-top: 15px;  
+    }  
+
+    h1, h2 {  
+        margin-bottom: 15px;  
+        color: var(--text-main);  
+    }  
+
+    p {  
+        color: var(--text-muted);  
+        margin-bottom: 15px;  
+    }  
+
+    .badge-red {  
+        display: inline-block;  
+        background: var(--accent-red);  
+        color: white;  
+        padding: 5px 12px;  
+        font-weight: bold;  
+        font-size: 12px;  
+        border-radius: 4px;  
+        letter-spacing: 1px;  
+        margin-bottom: 15px;  
+    }  
+
+    footer {  
+        text-align: center;  
+        padding: 30px;  
+        border-top: 1px solid var(--border-color);  
+        color: var(--text-muted);  
+        font-size: 13px;  
+        background: var(--card-bg);  
+    }  
+</style>
+
+</head>  
+<body>  <!-- Sprachauswahl-Overlay -->  
+<div id="lang-modal">  
+    <div class="lang-card">  
+        <h2>PLÄQ-A1 Secure Portal</h2>  
+        <p>Please select your language / Bitte wählen Sie Ihre Sprache</p>  
+        <div class="lang-btns">  
+            <button class="btn" onclick="setLanguage('en')">English</button>  
+            <button class="btn" onclick="setLanguage('de')">Deutsch</button>  
+        </div>  
+    </div>  
+</div>  
+
+<!-- Hauptinhalt der Webseite -->  
+<div id="main-content">  
+    <!-- Navigation -->  
+    <header>  
+        <div class="logo">PLÄQ-A1 INDUSTRIAL</div>  
+        <nav>  
+            <ul>  
+                <li><a href="#overview" class="nav-overview">Overview</a></li>  
+                <li><a href="#specs" class="nav-specs">Specifications</a></li>  
+                <li><a href="#compliance" class="nav-compliance">EU Tax 2027</a></li>  
+                <li><a href="#contact" class="nav-contact">NDA Access</a></li>  
+            </ul>  
+        </nav>  
+    </header>  
+
+    <!-- X-Banner als Hero -->  
+    <div class="hero">  
+        <img src="banner.jpg" alt="Re-engineering Germany Banner">  
+    </div>  
+
+    <div class="container">  
+        <div class="grid-2">  
+            <div>  
+                <span class="badge-red">RESTRICTED ACCESS</span>  
+                <h1 id="main-title">Re-engineering Germany: EU-Plastic Tax 2027</h1>  
+                <p id="main-text-1">Mit der Einführung der EU-Plastiksteuer (€550/t) stehen deutsche Industriezweige vor massiven Herausforderungen. PLÄQ-A1 bietet die technologische Drop-In Polyester Lösung als geschlossener Kreislauf (Closed-Loop >= 90%).</p>  
+                <p id="main-text-2">Dieses Dokument unterliegt strengen Geheimhaltungsrichtlinien. Technische Details und Spezifikationen sind ausschließlich Partnern mit verifiziertem NDA zugänglich.</p>  
+            </div>  
+            <div class="card">  
+                <h3 id="hud-title" style="color: var(--accent-blue); margin-bottom: 10px;">System telemetry & HUD</h3>  
+                <p id="hud-desc">Echtzeit-Parameter und thermische Stabilität im geschlossenen System.</p>  
+                <!-- Profilbild / HUD Display -->  
+                <img src="profile.jpg" alt="PLÄQ-A1 HUD Display">  
+            </div>  
+        </div>  
+    </div>  
+
+    <footer>  
+        <p>&copy; 2026 PLÄQ-A1 Project. Industrial Confidentiality Protected.</p>  
+    </footer>  
+</div>  
+
+<script>  
+    // Einfache Sprach-Umschaltlogik  
+    const translations = {  
+        en: {  
+            overview: "Overview",  
+            specs: "Specifications",  
+            compliance: "EU Tax 2027",  
+            contact: "NDA Access",  
+            title: "Re-engineering Germany: EU-Plastic Tax 2027",  
+            text1: "With the introduction of the EU Plastic Tax (€550/t), German industries face massive financial and regulatory challenges. PLÄQ-A1 delivers the ultimate drop-in polyester solution with a closed-loop rate of >= 90%.",  
+            text2: "This project is strictly confidential. Technical specifications and data sheets are exclusively available under a verified Non-Disclosure Agreement (NDA).",  
+            hudTitle: "System Telemetry & HUD",  
+            hudDesc: "Real-time parameters and thermal stability within the closed-loop architecture."  
+        },  
+        de: {  
+            overview: "Übersicht",  
+            specs: "Spezifikationen",  
+            compliance: "EU-Steuer 2027",  
+            contact: "NDA Zugang",  
+            title: "Re-engineering Germany: EU-Plastic Tax 2027",  
+            text1: "Mit der Einführung der EU-Plastiksteuer (€550/t) stehen deutsche Industriezweige vor massiven Herausforderungen. PLÄQ-A1 bietet die technologische Drop-In Polyester Lösung als geschlossener Kreislauf (Closed-Loop >= 90%).",  
+            text2: "Dieses Dokument unterliegt strengen Geheimhaltungsrichtlinien. Technische Details und Spezifikationen sind ausschließlich Partnern mit verifiziertem NDA zugänglich.",  
+            hudTitle: "System-Telemetrie & HUD",  
+            hudDesc: "Echtzeit-Parameter und thermische Stabilität im geschlossenen Kreislauf."  
+        }  
+    };  
+
+    function setLanguage(lang) {  
+        // Texte anpassen  
+        document.querySelector('.nav-overview').innerText = translations[lang].overview;  
+        document.querySelector('.nav-specs').innerText = translations[lang].specs;  
+        document.querySelector('.nav-compliance').innerText = translations[lang].compliance;  
+        document.querySelector('.nav-contact').innerText = translations[lang].contact;  
+          
+        document.getElementById('main-title').innerText = translations[lang].title;  
+        document.getElementById('main-text-1').innerText = translations[lang].text1;  
+        document.getElementById('main-text-2').innerText = translations[lang].text2;  
+          
+        document.getElementById('hud-title').innerText = translations[lang].hudTitle;  
+        document.getElementById('hud-desc').innerText = translations[lang].hudDesc;  
+
+        // Modal ausblenden und Hauptinhalt einblenden  
+        document.getElementById('lang-modal').style.display = 'none';  
+        document.getElementById('main-content').style.display = 'block';  
+    }  
+</script>
+
+</body>  
+</html>  
