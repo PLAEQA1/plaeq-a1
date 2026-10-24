@@ -78,6 +78,9 @@
     footer{border-top:1px solid rgba(139,190,232,.16)}
     .foot{width:min(var(--max),calc(100% - 40px));margin:auto;padding:24px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:#91a8c0;font-size:.82rem}
     .foot strong{color:var(--cyan);letter-spacing:.12em}
+    .legal-links{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+    .legal-links a{color:#b8c8dc;text-decoration:none}
+    .legal-links a:hover{color:#75e7ff;text-decoration:underline}
     
     @media(max-width:760px){
       .nav{width:calc(100% - 28px);min-height:70px}
@@ -241,6 +244,11 @@
       <div><strong>PLÄQ-A1</strong> · Re-engineering Germany</div>
       <div>Entwicklungsziele sind keine bestätigten Leistungsnachweise.</div>
       <div>© <span id="year"></span> PLÄQ</div>
+      <div class="legal-links">
+        <a href="impressum.html">Impressum</a>
+        <span aria-hidden="true">·</span>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
     </div>
   </footer>
 
